@@ -1,4 +1,4 @@
-package com.yerayyas.gymroutines.workout.data.mapper
+package com.yerayyas.gymroutines.core.data.mapper
 
 import com.yerayyas.gymroutines.core.data.local.entities.ExerciseEntity
 import com.yerayyas.gymroutines.core.data.local.entities.WorkoutEntity
@@ -15,6 +15,14 @@ fun WorkoutEntity.toDomain(exercises: List<Exercise>): Workout {
     )
 }
 
+fun Workout.toEntity(routineId: String): WorkoutEntity {
+    return WorkoutEntity(
+        workoutId = this.id,
+        name = this.name,
+        routineId = routineId
+    )
+}
+
 fun ExerciseEntity.toDomain(sets: List<WorkoutSet>): Exercise {
     return Exercise(
         id = this.exerciseId,
@@ -23,9 +31,27 @@ fun ExerciseEntity.toDomain(sets: List<WorkoutSet>): Exercise {
     )
 }
 
+fun Exercise.toEntity(workoutId: String): ExerciseEntity {
+    return ExerciseEntity(
+        exerciseId = this.id,
+        name = this.name,
+        workoutId = workoutId
+    )
+}
+
 fun WorkoutSetEntity.toDomain(): WorkoutSet {
     return WorkoutSet(
         weight = this.weight,
-        repetitions = this.repetitions
+        repetitions = this.repetitions,
+        id = this.workoutSetId!!  // TODO: Quitar estos signos de exclamación
+    )
+}
+
+fun WorkoutSet.toEntity(exerciseId: String): WorkoutSetEntity {
+    return WorkoutSetEntity(
+        workoutSetId = this.id,
+        weight = this.weight,
+        repetitions = this.repetitions,
+        exerciseId = exerciseId
     )
 }

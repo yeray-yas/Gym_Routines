@@ -1,5 +1,9 @@
 package com.yerayyas.gymroutines.workout.di
 
+import com.yerayyas.gymroutines.core.data.local.ExerciseDao
+import com.yerayyas.gymroutines.core.data.local.RoutineDao
+import com.yerayyas.gymroutines.core.data.local.WorkoutDao
+import com.yerayyas.gymroutines.core.data.local.WorkoutSetDao
 import com.yerayyas.gymroutines.home.domain.repository.HomeRepository
 import com.yerayyas.gymroutines.home.domain.useCases.GetRoutinesUseCase
 import com.yerayyas.gymroutines.workout.data.repository.WorkoutRepositoryImpl
@@ -17,8 +21,13 @@ class WorkoutModule {
 
     @Singleton
     @Provides
-    fun provideWorkoutRepository(): WorkoutRepository {
-        return WorkoutRepositoryImpl()
+    fun provideWorkoutRepository(
+        routineDao: RoutineDao,
+        workoutDao: WorkoutDao,
+        workoutSetDao: WorkoutSetDao,
+        exerciseDao: ExerciseDao
+    ): WorkoutRepository {
+        return WorkoutRepositoryImpl(routineDao, workoutDao, exerciseDao, workoutSetDao)
     }
 
     @Singleton

@@ -2,10 +2,12 @@ package com.yerayyas.gymroutines.core.di
 
 import android.content.Context
 import androidx.room.Room
+import com.yerayyas.gymroutines.core.data.local.ExerciseDao
 import com.yerayyas.gymroutines.core.data.local.RoutineDao
 import com.yerayyas.gymroutines.core.data.local.WorkoutDao
 import com.yerayyas.gymroutines.core.data.local.WorkoutDatabase
 import com.yerayyas.gymroutines.core.data.local.WorkoutLogDao
+import com.yerayyas.gymroutines.core.data.local.WorkoutSetDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,5 +47,17 @@ object CoreModule {
     @Singleton
     fun provideRoutineDao(db:WorkoutDatabase):RoutineDao{
         return db.routineDao
+    }
+
+    @Provides
+    @Singleton
+    fun provideWorkoutSetDao(db:WorkoutDatabase):WorkoutSetDao{
+        return db.workoutSetDao
+    }
+
+    @Provides
+    @Singleton
+    fun provideExerciseDao(db:WorkoutDatabase):ExerciseDao{
+        return db.exerciseDao
     }
 }
