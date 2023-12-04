@@ -7,7 +7,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yerayyas.gymroutines.core.domain.model.WorkoutLog
 import com.yerayyas.gymroutines.workout.domain.useCases.CreateWorkoutUseCase
+import com.yerayyas.gymroutines.workout.domain.useCases.FinishWorkoutUseCase
 import com.yerayyas.gymroutines.workout.domain.useCases.GetNextWorkoutIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,18 +19,22 @@ import javax.inject.Inject
 class WorkoutViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getNextWorkoutIdUseCase: GetNextWorkoutIdUseCase,
-    private val createWorkoutUseCase: CreateWorkoutUseCase
+    private val createWorkoutUseCase: CreateWorkoutUseCase,
+    private val finishWorkoutUseCase: FinishWorkoutUseCase
 ) : ViewModel() {
     var state by mutableStateOf(WorkoutState())
 
 
     init {
         val routineId = savedStateHandle["routineId"] ?: "asd"
+
         viewModelScope.launch {
             val workoutId = getNextWorkoutIdUseCase(routineId)
             val workout = createWorkoutUseCase(workoutId)
-            println(workout)
-            println()
+            state = state.copy(
+                workout = workout,
+                routineId = routineId
+            )
         }
     }
 
@@ -38,6 +44,23 @@ class WorkoutViewModel @Inject constructor(
                 state = state.copy(
                     weight = event.weight,
                 )
+            }
+
+            WorkoutEvent.FinishWorkout -> {
+                viewModelScope.launch {
+                    val workoutLog = state.workout?.let {
+                        WorkoutLog(
+                            id = null,
+                            bodyWeight = state.weight.toDouble(),
+                            date = state.date,
+                            workout = it
+                        )
+
+                    }
+                    if (workoutLog != null) {
+                        finishWorkoutUseCase(state.routineId, workoutLog)
+                    }
+                }
             }
         }
     }

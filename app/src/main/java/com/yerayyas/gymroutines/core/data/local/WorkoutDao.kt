@@ -11,7 +11,7 @@ interface WorkoutDao {
     @Query("SELECT * FROM WorkoutEntity WHERE workoutId = :id")
     suspend fun getWorkoutById(id: String): WorkoutEntity
 
-    @Query("SELECT workoutId FROM WorkoutEntity WHERE routineId = :id")
+    @Query("SELECT workoutId FROM WorkoutEntity WHERE routineId = :id ORDER BY creationTime ASC")
     suspend fun getWorkoutsByRoutineId(id: String): List<String>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

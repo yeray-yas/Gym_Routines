@@ -8,5 +8,6 @@ data class WorkoutEntity(
     @PrimaryKey(autoGenerate = false)
     val workoutId: String,
     val name: String,
-    val routineId: String
+    val routineId: String,
+    val creationTime: Long
 )

@@ -3,6 +3,7 @@ package com.yerayyas.gymroutines.home.di
 import com.yerayyas.gymroutines.core.data.local.ExerciseDao
 import com.yerayyas.gymroutines.core.data.local.RoutineDao
 import com.yerayyas.gymroutines.core.data.local.WorkoutDao
+import com.yerayyas.gymroutines.core.data.local.WorkoutLogDao
 import com.yerayyas.gymroutines.core.data.local.WorkoutSetDao
 import com.yerayyas.gymroutines.home.data.repository.HomeRepositoryImpl
 import com.yerayyas.gymroutines.home.domain.repository.HomeRepository
@@ -24,9 +25,10 @@ class HomeModule {
         routineDao: RoutineDao,
         workoutDao: WorkoutDao,
         workoutSetDao: WorkoutSetDao,
-        exerciseDao: ExerciseDao
+        exerciseDao: ExerciseDao,
+        workoutLogDao: WorkoutLogDao
     ): HomeRepository {
-        return HomeRepositoryImpl(routineDao, workoutDao, exerciseDao, workoutSetDao)
+        return HomeRepositoryImpl(routineDao, workoutDao, exerciseDao, workoutSetDao, workoutLogDao)
     }
 
     @Singleton

@@ -1,11 +1,16 @@
 package com.yerayyas.gymroutines.core.data.mapper
 
+import com.yerayyas.gymroutines.core.data.extensions.toTimeStamp
+import com.yerayyas.gymroutines.core.data.extensions.toZonedDateTime
 import com.yerayyas.gymroutines.core.data.local.entities.ExerciseEntity
 import com.yerayyas.gymroutines.core.data.local.entities.WorkoutEntity
+import com.yerayyas.gymroutines.core.data.local.entities.WorkoutLogEntity
 import com.yerayyas.gymroutines.core.data.local.entities.WorkoutSetEntity
 import com.yerayyas.gymroutines.core.domain.model.Exercise
 import com.yerayyas.gymroutines.core.domain.model.Workout
+import com.yerayyas.gymroutines.core.domain.model.WorkoutLog
 import com.yerayyas.gymroutines.core.domain.model.WorkoutSet
+import java.time.LocalDateTime
 
 fun WorkoutEntity.toDomain(exercises: List<Exercise>): Workout {
     return Workout(
@@ -19,7 +24,8 @@ fun Workout.toEntity(routineId: String): WorkoutEntity {
     return WorkoutEntity(
         workoutId = this.id,
         name = this.name,
-        routineId = routineId
+        routineId = routineId,
+        creationTime = LocalDateTime.now().toZonedDateTime().toTimeStamp()
     )
 }
 
@@ -56,22 +62,22 @@ fun WorkoutSet.toEntity(exerciseId: String): WorkoutSetEntity {
     )
 }
 
-/*
-fun WorkoutLogEntity.toDomain(): WorkoutLog {
+/*fun WorkoutLogEntity.toDomain(): WorkoutLog {
     return WorkoutLog(
-        id = ,
-        bodyWeight = ,
-        date = ,
+        id =,
+        bodyWeight =,
+        date =,
         workout =
     )
-}
+}*/
 
 fun WorkoutLog.toEntity(routineId: String): WorkoutLogEntity {
     return WorkoutLogEntity(
-       workoutLogId = ,
-        bodyWeight = ,
-        date = ,
-        workoutId = ,
-        routineId =
+        workoutLogId = this.id,
+        bodyWeight = this.bodyWeight,
+        date = this.date.toTimeStamp(),
+        workoutId = this.workout.id,
+        routineId = routineId
     )
-}*/
+}
+

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -20,13 +21,17 @@ fun WorkoutScreen(viewModel: WorkoutViewModel = hiltViewModel()) {
     Column(modifier = Modifier.fillMaxSize()) {
         Row (modifier = Modifier.fillMaxWidth()) {
             TextField(
-                value = state.weight.toString(), onValueChange = {
+                value = state.weight, onValueChange = {
                     viewModel.onEvent(WorkoutEvent.ChangeWeight(it))
                 }, keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Decimal,
                 ),
             )
-            Text(text = "${state.today}")
+            Text(text = "${state.date}")
+        }
+        
+        Button(onClick = { viewModel.onEvent(WorkoutEvent.FinishWorkout)}) {
+            Text(text = "Finish Workout!")
         }
     }
 }

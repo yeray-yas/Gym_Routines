@@ -5,6 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yerayyas.gymroutines.core.domain.model.Exercise
+import com.yerayyas.gymroutines.core.domain.model.Routine
+import com.yerayyas.gymroutines.core.domain.model.Workout
+import com.yerayyas.gymroutines.core.domain.model.WorkoutSet
 import com.yerayyas.gymroutines.home.domain.useCases.GetRoutinesUseCase
 import com.yerayyas.gymroutines.home.domain.useCases.InsertRoutineUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,7 +33,7 @@ class HomeViewModel @Inject constructor(
             }
         }
 
-/*        val setsA1 = listOf(
+        val setsA1 = listOf(
             WorkoutSet(
                 id = 1,
                 weight = 12.0,
@@ -129,6 +133,6 @@ class HomeViewModel @Inject constructor(
                 println()
             }
             println()
-        }*/
+        }
     }
 }
