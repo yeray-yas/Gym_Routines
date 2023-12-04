@@ -10,4 +10,5 @@ data class WorkoutSetEntity(
     val weight: Double,
     val repetitions: Int,
     val exerciseId: String
+    // TODO: Add min and max repetitions, for automatic progressive overload
 )

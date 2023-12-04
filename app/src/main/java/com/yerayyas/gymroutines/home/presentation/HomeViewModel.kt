@@ -5,14 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yerayyas.gymroutines.core.data.local.entities.ExerciseEntity
-import com.yerayyas.gymroutines.core.data.local.entities.RoutineEntity
-import com.yerayyas.gymroutines.core.data.local.entities.WorkoutEntity
-import com.yerayyas.gymroutines.core.data.local.entities.WorkoutSetEntity
-import com.yerayyas.gymroutines.core.domain.model.Exercise
-import com.yerayyas.gymroutines.core.domain.model.Routine
-import com.yerayyas.gymroutines.core.domain.model.Workout
-import com.yerayyas.gymroutines.core.domain.model.WorkoutSet
 import com.yerayyas.gymroutines.home.domain.useCases.GetRoutinesUseCase
 import com.yerayyas.gymroutines.home.domain.useCases.InsertRoutineUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,29 +29,55 @@ class HomeViewModel @Inject constructor(
             }
         }
 
-/*        val setsA = listOf(
+/*        val setsA1 = listOf(
             WorkoutSet(
                 id = 1,
-                weight = 20.0,
-                repetitions = 15
+                weight = 12.0,
+                repetitions = 13
             ),
             WorkoutSet(
                 id = 2,
-                weight = 10.0,
-                repetitions = 30
+                weight = 14.0,
+                repetitions = 15
             )
         )
 
-        val setsB = listOf(
+        val setsA2 = listOf(
             WorkoutSet(
-                id = 1,
-                weight = 20.0,
-                repetitions = 15
+                id = 3,
+                weight = 16.0,
+                repetitions = 17
             ),
             WorkoutSet(
-                id = 2,
-                weight = 10.0,
-                repetitions = 30
+                id = 4,
+                weight = 18.0,
+                repetitions = 19
+            )
+        )
+
+        val setsB1 = listOf(
+            WorkoutSet(
+                id = 5,
+                weight = 20.0,
+                repetitions = 21
+            ),
+            WorkoutSet(
+                id = 6,
+                weight = 22.0,
+                repetitions = 23
+            )
+        )
+
+        val setsB2 = listOf(
+            WorkoutSet(
+                id = 7,
+                weight = 24.0,
+                repetitions = 25
+            ),
+            WorkoutSet(
+                id = 8,
+                weight = 26.0,
+                repetitions = 27
             )
         )
 
@@ -67,12 +85,12 @@ class HomeViewModel @Inject constructor(
             Exercise(
                 id = "exa1",
                 name = "Bench Press",
-                sets = setsA
+                sets = setsA1
             ),
             Exercise(
                 id = "exa2",
                 name = "Dead Lift",
-                sets = setsA
+                sets = setsA2
             )
         )
 
@@ -80,12 +98,12 @@ class HomeViewModel @Inject constructor(
             Exercise(
                 id = "exb1",
                 name = "Squats",
-                sets = setsB
+                sets = setsB1
             ),
             Exercise(
                 id = "exb2",
                 name = "Dead Lift",
-                sets = setsB
+                sets = setsB2
             )
         )
 

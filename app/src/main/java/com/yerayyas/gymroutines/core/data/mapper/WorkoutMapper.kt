@@ -55,3 +55,23 @@ fun WorkoutSet.toEntity(exerciseId: String): WorkoutSetEntity {
         exerciseId = exerciseId
     )
 }
+
+/*
+fun WorkoutLogEntity.toDomain(): WorkoutLog {
+    return WorkoutLog(
+        id = ,
+        bodyWeight = ,
+        date = ,
+        workout =
+    )
+}
+
+fun WorkoutLog.toEntity(routineId: String): WorkoutLogEntity {
+    return WorkoutLogEntity(
+       workoutLogId = ,
+        bodyWeight = ,
+        date = ,
+        workoutId = ,
+        routineId =
+    )
+}*/
