@@ -30,18 +30,8 @@ class WorkoutRepositoryImpl(
         return workoutDao.getWorkoutById(id).toDomain(exercises)
     }
 
-
-    // TODO: Migrate to Room Relations to avoid manual work
-
     private suspend fun getExercisesForWorkout(workoutId: String): List<Exercise> {
-        val exercises = exerciseDao.getExercisesIdsByWorkoutId(workoutId)
-        val fullExercises = mutableListOf<Exercise>()
-        exercises.forEach {
-            val sets = workoutSetDao.getWorkoutSetByExerciseId(it)
-            val exercise = exerciseDao.getExerciseById(it)
-            fullExercises.add(exercise.toDomain(sets.map { it.toDomain() }))
-        }
-        return fullExercises
+        return exerciseDao.getExercisesByWorkoutId(workoutId).map { it.toDomain() }
     }
 
     override suspend fun getLastWorkoutLogInRoutine(routineId: String): String? {
@@ -66,14 +56,9 @@ class WorkoutRepositoryImpl(
         workoutLogDao.createWorkoutLog(log.toEntity(routineId))
         workoutDao.insertWorkout(workout.toEntity(routineId))
         workout.exercises.forEach { exercise ->
-            val updatedExercise = exercise.toEntity(workout.id).copy(exerciseId = UUID.randomUUID().toString())
-            exerciseDao.insertExercise(updatedExercise)
+            val exerciseId = exerciseDao.insertExercise(exercise.toEntity(workout.id))
             exercise.sets.forEach { set ->
-
-                val updatedSet = set.toEntity(updatedExercise.exerciseId).copy(
-                    workoutSetId = null
-                )
-                workoutSetDao.insertWorkoutSet(updatedSet)
+                workoutSetDao.insertWorkoutSet(set.toEntity(exerciseId))
             }
         }
     }

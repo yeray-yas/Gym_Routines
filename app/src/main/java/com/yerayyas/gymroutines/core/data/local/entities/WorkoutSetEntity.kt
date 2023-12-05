@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 @Entity
 data class WorkoutSetEntity(
     @PrimaryKey(autoGenerate = true)
-    val workoutSetId: Int? = null,
+    val workoutSetId: Long? = null,
     val weight: Double,
     val repetitions: Int,
-    val exerciseId: String
+    val exerciseId: Long
     // TODO: Add min and max repetitions, for automatic progressive overload
 )

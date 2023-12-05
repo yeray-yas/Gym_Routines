@@ -67,37 +67,30 @@ object FakeDataGenerator {
 
         return listOf(
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Squats",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Bench Press",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Weighted Chinup",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Machine Lateral Raises",
                 sets = isolatedSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Diverging Low Row",
                 sets = isolatedSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Triceps Pushdowns",
                 sets = isolatedSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Incline DumbBell Biceps Curl",
                 sets = isolatedSets
             )
@@ -157,37 +150,30 @@ object FakeDataGenerator {
 
         return listOf(
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Squats",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Overhead Press",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Weighted Chinup",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "DumbBell Shrugs",
                 sets = shrugsSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Pec Dec",
                 sets = isolatedSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Triceps Pushdowns",
                 sets = isolatedSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
                 name = "Incline DumbBell Biceps Curl",
                 sets = isolatedSets
             )

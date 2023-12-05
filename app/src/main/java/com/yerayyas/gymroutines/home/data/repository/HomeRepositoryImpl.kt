@@ -29,15 +29,11 @@ class HomeRepositoryImpl(
         routine.workouts.forEach { workout ->
             workoutDao.insertWorkout(workout.toEntity(routine.id))
             workout.exercises.forEach { exercise ->
-                exerciseDao.insertExercise(exercise.toEntity(workout.id))
+                val exerciseId = exerciseDao.insertExercise(exercise.toEntity(workout.id))
                 exercise.sets.forEach { set ->
-                    workoutSetDao.insertWorkoutSet(set.toEntity(exercise.id))
+                    workoutSetDao.insertWorkoutSet(set.toEntity(exerciseId))
                 }
             }
-
         }
-
-
-
     }
 }

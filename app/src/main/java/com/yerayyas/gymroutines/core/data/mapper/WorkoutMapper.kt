@@ -6,6 +6,7 @@ import com.yerayyas.gymroutines.core.data.local.entities.ExerciseEntity
 import com.yerayyas.gymroutines.core.data.local.entities.WorkoutEntity
 import com.yerayyas.gymroutines.core.data.local.entities.WorkoutLogEntity
 import com.yerayyas.gymroutines.core.data.local.entities.WorkoutSetEntity
+import com.yerayyas.gymroutines.core.data.local.entities.relations.ExerciseWithSets
 import com.yerayyas.gymroutines.core.domain.model.Exercise
 import com.yerayyas.gymroutines.core.domain.model.Workout
 import com.yerayyas.gymroutines.core.domain.model.WorkoutLog
@@ -45,6 +46,14 @@ fun Exercise.toEntity(workoutId: String): ExerciseEntity {
     )
 }
 
+fun ExerciseWithSets.toDomain(): Exercise {
+    return Exercise(
+        id = this.exercise.exerciseId,
+        name = this.exercise.name,
+        sets = this.sets.map { it.toDomain()}
+    )
+}
+
 fun WorkoutSetEntity.toDomain(): WorkoutSet {
     return WorkoutSet(
         weight = this.weight,
@@ -53,7 +62,7 @@ fun WorkoutSetEntity.toDomain(): WorkoutSet {
     )
 }
 
-fun WorkoutSet.toEntity(exerciseId: String): WorkoutSetEntity {
+fun WorkoutSet.toEntity(exerciseId: Long): WorkoutSetEntity {
     return WorkoutSetEntity(
         workoutSetId = this.id,
         weight = this.weight,
