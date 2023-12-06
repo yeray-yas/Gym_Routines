@@ -7,7 +7,6 @@ import com.yerayyas.gymroutines.core.data.local.WorkoutLogDao
 import com.yerayyas.gymroutines.core.data.local.WorkoutSetDao
 import com.yerayyas.gymroutines.core.data.mapper.toDomain
 import com.yerayyas.gymroutines.core.data.mapper.toEntity
-import com.yerayyas.gymroutines.core.domain.model.Exercise
 import com.yerayyas.gymroutines.core.domain.model.Workout
 import com.yerayyas.gymroutines.core.domain.model.WorkoutLog
 import com.yerayyas.gymroutines.workout.domain.repository.WorkoutRepository
@@ -26,12 +25,7 @@ class WorkoutRepositoryImpl(
     }
 
     override suspend fun getWorkoutById(id: String): Workout {
-        val exercises = getExercisesForWorkout(id)
-        return workoutDao.getWorkoutById(id).toDomain(exercises)
-    }
-
-    private suspend fun getExercisesForWorkout(workoutId: String): List<Exercise> {
-        return exerciseDao.getExercisesByWorkoutId(workoutId).map { it.toDomain() }
+        return workoutDao.getWorkoutById(id).toDomain()
     }
 
     override suspend fun getLastWorkoutLogInRoutine(routineId: String): String? {
@@ -46,7 +40,6 @@ class WorkoutRepositoryImpl(
     override suspend fun getLastWorkoutLogWorkout(workoutId: String): Workout? {
         val lastWorkout = workoutLogDao.getLastWorkout(workoutId)
         val lastWorkoutId = lastWorkout?.workoutId ?: return null
-
         return getWorkoutById(lastWorkoutId)
     }
 

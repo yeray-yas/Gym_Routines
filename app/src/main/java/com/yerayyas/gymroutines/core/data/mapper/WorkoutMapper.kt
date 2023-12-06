@@ -7,6 +7,7 @@ import com.yerayyas.gymroutines.core.data.local.entities.WorkoutEntity
 import com.yerayyas.gymroutines.core.data.local.entities.WorkoutLogEntity
 import com.yerayyas.gymroutines.core.data.local.entities.WorkoutSetEntity
 import com.yerayyas.gymroutines.core.data.local.entities.relations.ExerciseWithSets
+import com.yerayyas.gymroutines.core.data.local.entities.relations.WorkoutWithExercises
 import com.yerayyas.gymroutines.core.domain.model.Exercise
 import com.yerayyas.gymroutines.core.domain.model.Workout
 import com.yerayyas.gymroutines.core.domain.model.WorkoutLog
@@ -50,7 +51,7 @@ fun ExerciseWithSets.toDomain(): Exercise {
     return Exercise(
         id = this.exercise.exerciseId,
         name = this.exercise.name,
-        sets = this.sets.map { it.toDomain()}
+        sets = this.sets.map { it.toDomain() }
     )
 }
 
@@ -58,7 +59,7 @@ fun WorkoutSetEntity.toDomain(): WorkoutSet {
     return WorkoutSet(
         weight = this.weight,
         repetitions = this.repetitions,
-        id = this.workoutSetId!!  // TODO: Quitar estos signos de exclamación
+        id = this.workoutSetId
     )
 }
 
@@ -87,6 +88,14 @@ fun WorkoutLog.toEntity(routineId: String): WorkoutLogEntity {
         date = this.date.toTimeStamp(),
         workoutId = this.workout.id,
         routineId = routineId
+    )
+}
+
+fun WorkoutWithExercises.toDomain(): Workout {
+    return Workout(
+        id = this.workoutEntity.workoutId,
+        name = this.workoutEntity.name,
+        exercises = this.exercises.map { it.toDomain() }
     )
 }
 
