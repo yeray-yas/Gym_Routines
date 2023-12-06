@@ -38,9 +38,9 @@ class WorkoutRepositoryImpl(
     }
 
     override suspend fun getLastWorkoutLogWorkout(workoutId: String): Workout? {
-        val lastWorkout = workoutLogDao.getLastWorkout(workoutId)
-        val lastWorkoutId = lastWorkout?.workoutId ?: return null
-        return getWorkoutById(lastWorkoutId)
+        val lastWorkoutLog = workoutLogDao.getLastWorkout(workoutId)
+        val lastWorkout = lastWorkoutLog?.workout ?: return null
+        return lastWorkout.toDomain()
     }
 
     override suspend fun saveWorkout(routineId: String, workoutLog: WorkoutLog) {
