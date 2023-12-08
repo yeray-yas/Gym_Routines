@@ -31,7 +31,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun HomeScreen(
-    onWorkoutClick: (String) -> Unit,
+    onRoutineClick: (Long) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 
 ) {
@@ -72,7 +72,7 @@ fun HomeScreen(
                     .height(120.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .clickable {
-                        onWorkoutClick(it.id)
+                        onRoutineClick(it.id!!) // TODO: quitar estas exclamaciones
                     }
             ) {
                 Image(

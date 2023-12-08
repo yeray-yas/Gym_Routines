@@ -10,7 +10,7 @@ object FakeDataGenerator {
 
     fun createRoutine(): Routine {
         return Routine(
-            id = UUID.randomUUID().toString(),
+            id = null,
             name = "Full Body Workout",
             workouts = listOf(createWorkoutA(), createWorkoutB())
         )
@@ -18,7 +18,7 @@ object FakeDataGenerator {
 
     private fun createWorkoutA(): Workout {
         return Workout(
-            UUID.randomUUID().toString(),
+            null,
             "Workout A",
             createExercisesA()
         )
@@ -26,7 +26,7 @@ object FakeDataGenerator {
 
     private fun createWorkoutB(): Workout {
         return Workout(
-            UUID.randomUUID().toString(),
+            null,
             "Workout B",
             createExercisesB()
         )

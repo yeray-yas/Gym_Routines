@@ -26,7 +26,7 @@ class WorkoutViewModel @Inject constructor(
 
 
     init {
-        val routineId = savedStateHandle["routineId"] ?: "asd"
+        val routineId = savedStateHandle["routineId"] ?: -1L
 
         viewModelScope.launch {
             val workoutId = getNextWorkoutIdUseCase(routineId)

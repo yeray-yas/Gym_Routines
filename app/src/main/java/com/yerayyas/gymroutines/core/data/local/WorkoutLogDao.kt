@@ -12,21 +12,21 @@ import com.yerayyas.gymroutines.core.data.local.entities.relations.WorkoutLogWit
 @Dao
 interface WorkoutLogDao {
     @Query("SELECT * FROM WorkoutLogEntity WHERE workoutLogId = :id")
-    suspend fun getWorkoutLogById(id: String): WorkoutLogEntity
+    suspend fun getWorkoutLogById(id: Long): WorkoutLogEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun createWorkoutLog(workoutLogEntity: WorkoutLogEntity)
+    suspend fun createWorkoutLog(workoutLogEntity: WorkoutLogEntity): Long
 
     @Query("SELECT * FROM WorkoutLogEntity WHERE routineId = :id ORDER BY date DESC LIMIT 1")
-    suspend fun getLastWorkoutLogInRoutine(id: String): WorkoutLogEntity?
+    suspend fun getLastWorkoutLogInRoutine(id: Long): WorkoutLogEntity?
 
     @Transaction
     @Query("SELECT * FROM WorkoutLogEntity WHERE workoutId = :id ORDER BY date DESC LIMIT 1")
-    suspend fun getLastWorkout(id: String): WorkoutLogWithWorkout?
+    suspend fun getLastWorkout(id: Long): WorkoutLogWithWorkout?
 
     @Delete
     suspend fun deleteWorkoutLogById(workoutLogEntity: WorkoutLogEntity)
 
     @Query("SELECT COUNT(workoutLogId) FROM WorkoutLogEntity WHERE routineId = :id")
-    suspend fun countAllWorkoutLogs(id: String): Int
+    suspend fun countAllWorkoutLogs(id: Long): Int
 }

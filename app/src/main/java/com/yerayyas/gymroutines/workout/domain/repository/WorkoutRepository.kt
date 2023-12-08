@@ -4,15 +4,15 @@ import com.yerayyas.gymroutines.core.domain.model.Workout
 import com.yerayyas.gymroutines.core.domain.model.WorkoutLog
 
 interface WorkoutRepository {
-    suspend fun getAllWorkoutsIdsByRoutine(routineId: String): List<String>
+    suspend fun getAllWorkoutsIdsByRoutine(routineId: Long): List<Long>
 
-    suspend fun getWorkoutById(id: String): Workout
+    suspend fun getWorkoutById(id: Long): Workout
 
-    suspend fun getLastWorkoutLogInRoutine(routineId: String): String?
+    suspend fun getLastWorkoutLogInRoutine(routineId: Long): Long?
 
-    suspend fun countAllWorkoutLogs(routineId: String): Int?
+    suspend fun countAllWorkoutLogs(routineId: Long): Int
 
-    suspend fun getLastWorkoutLogWorkout(workoutId: String): Workout?
+    suspend fun getLastWorkoutLogWorkout(workoutId: Long): Workout?
 
-    suspend fun saveWorkout(routineId: String, workoutLog: WorkoutLog)
+    suspend fun saveWorkout(routineId: Long, workoutLog: WorkoutLog)
 }

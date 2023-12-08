@@ -22,7 +22,7 @@ fun WorkoutEntity.toDomain(exercises: List<Exercise>): Workout {
     )
 }
 
-fun Workout.toEntity(routineId: String): WorkoutEntity {
+fun Workout.toEntity(routineId: Long): WorkoutEntity {
     return WorkoutEntity(
         workoutId = this.id,
         name = this.name,
@@ -39,7 +39,7 @@ fun ExerciseEntity.toDomain(sets: List<WorkoutSet>): Exercise {
     )
 }
 
-fun Exercise.toEntity(workoutId: String): ExerciseEntity {
+fun Exercise.toEntity(workoutId: Long): ExerciseEntity {
     return ExerciseEntity(
         exerciseId = this.id,
         name = this.name,
@@ -81,12 +81,12 @@ fun WorkoutSet.toEntity(exerciseId: Long): WorkoutSetEntity {
     )
 }*/
 
-fun WorkoutLog.toEntity(routineId: String): WorkoutLogEntity {
+fun WorkoutLog.toEntity(routineId: Long): WorkoutLogEntity {
     return WorkoutLogEntity(
         workoutLogId = this.id,
         bodyWeight = this.bodyWeight,
         date = this.date.toTimeStamp(),
-        workoutId = this.workout.id,
+        workoutId = this.workout.id!!, // TODO: quitar las exclamaciones
         routineId = routineId
     )
 }

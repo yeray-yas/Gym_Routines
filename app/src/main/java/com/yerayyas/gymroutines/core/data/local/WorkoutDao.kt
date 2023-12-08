@@ -12,11 +12,11 @@ import com.yerayyas.gymroutines.core.data.local.entities.relations.WorkoutWithEx
 interface WorkoutDao {
     @Transaction
     @Query("SELECT * FROM WorkoutEntity WHERE workoutId = :id")
-    suspend fun getWorkoutById(id: String): WorkoutWithExercises
+    suspend fun getWorkoutById(id: Long): WorkoutWithExercises
 
     @Query("SELECT workoutId FROM WorkoutEntity WHERE routineId = :id ORDER BY creationTime ASC")
-    suspend fun getWorkoutsByRoutineId(id: String): List<String>
+    suspend fun getWorkoutsByRoutineId(id: Long): List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertWorkout(workout: WorkoutEntity)
+    suspend fun insertWorkout(workout: WorkoutEntity): Long
 }

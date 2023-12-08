@@ -8,5 +8,5 @@ data class ExerciseEntity(
     @PrimaryKey(autoGenerate = true)
     val exerciseId: Long? = null,
     val name: String,
-    val workoutId: String
+    val workoutId: Long
 )

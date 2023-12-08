@@ -13,15 +13,15 @@ interface ExerciseDao {
 
     @Transaction
     @Query("SELECT * FROM ExerciseEntity WHERE workoutId = :workoutId")
-    suspend fun getExercisesByWorkoutId(workoutId: String): List<ExerciseWithSets>
+    suspend fun getExercisesByWorkoutId(workoutId: Long): List<ExerciseWithSets>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertExercise(exercise: ExerciseEntity): Long
 
     @Query("SELECT exerciseId FROM ExerciseEntity WHERE workoutId = :id")
-    suspend fun getExercisesIdsByWorkoutId(id: String): List<Int>
+    suspend fun getExercisesIdsByWorkoutId(id: Long): List<Int>
 
     @Transaction
     @Query("SELECT * FROM ExerciseEntity WHERE exerciseId = :id")
-    suspend fun getExerciseById(id: Int): ExerciseWithSets
+    suspend fun getExerciseById(id: Long): ExerciseWithSets
 }

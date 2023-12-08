@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.Flow
 interface RoutineDao {
     @Transaction
     @Query("SELECT * FROM RoutineEntity")
-     fun getAllRoutines(): Flow<List<RoutineWithWorkouts>>
+    fun getAllRoutines(): Flow<List<RoutineWithWorkouts>>
 
-     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     suspend fun insertRoutine(routine: RoutineEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertRoutine(routine: RoutineEntity): Long
 }

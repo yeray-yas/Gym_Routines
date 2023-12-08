@@ -9,8 +9,8 @@ import com.yerayyas.gymroutines.core.data.local.entities.WorkoutSetEntity
 @Dao
 interface WorkoutSetDao {
     @Query("SELECT * FROM WorkoutSetEntity WHERE exerciseId = :exerciseId")
-    suspend fun getWorkoutSetByExerciseId(exerciseId: String): List<WorkoutSetEntity>
+    suspend fun getWorkoutSetByExerciseId(exerciseId: Long): List<WorkoutSetEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertWorkoutSet(set: WorkoutSetEntity)
+    suspend fun insertWorkoutSet(set: WorkoutSetEntity): Long
 }
