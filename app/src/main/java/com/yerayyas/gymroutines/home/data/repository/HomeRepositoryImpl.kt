@@ -3,7 +3,6 @@ package com.yerayyas.gymroutines.home.data.repository
 import com.yerayyas.gymroutines.core.data.local.ExerciseDao
 import com.yerayyas.gymroutines.core.data.local.RoutineDao
 import com.yerayyas.gymroutines.core.data.local.WorkoutDao
-import com.yerayyas.gymroutines.core.data.local.WorkoutLogDao
 import com.yerayyas.gymroutines.core.data.local.WorkoutSetDao
 import com.yerayyas.gymroutines.core.data.mapper.toDomain
 import com.yerayyas.gymroutines.core.data.mapper.toEntity
@@ -16,8 +15,7 @@ class HomeRepositoryImpl(
     private val routineDao: RoutineDao,
     private val workoutDao: WorkoutDao,
     private val exerciseDao: ExerciseDao,
-    private val workoutSetDao: WorkoutSetDao,
-    private val workoutLogDao: WorkoutLogDao
+    private val workoutSetDao: WorkoutSetDao
 ) : HomeRepository {
 
     override fun getAllRoutines(): Flow<List<Routine>> {

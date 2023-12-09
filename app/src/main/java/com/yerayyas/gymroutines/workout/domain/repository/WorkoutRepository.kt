@@ -8,8 +8,6 @@ interface WorkoutRepository {
 
     suspend fun getWorkoutById(id: Long): Workout
 
-    suspend fun getLastWorkoutLogInRoutine(routineId: Long): Long?
-
     suspend fun countAllWorkoutLogs(routineId: Long): Int
 
     suspend fun getLastWorkoutLogWorkout(workoutId: Long): Workout?

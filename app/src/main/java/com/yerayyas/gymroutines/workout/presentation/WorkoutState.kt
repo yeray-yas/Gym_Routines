@@ -6,6 +6,6 @@ import java.time.LocalDate
 data class WorkoutState(
     val workout: Workout? = Workout(null, "", listOf()),
     val date: LocalDate = LocalDate.now(),
-    val weight: String = "0",
+    val bodyWeight: String = "0",
     val routineId: Long = -1L
 )

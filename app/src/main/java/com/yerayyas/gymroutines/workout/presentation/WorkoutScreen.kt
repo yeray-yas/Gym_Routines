@@ -21,7 +21,7 @@ fun WorkoutScreen(viewModel: WorkoutViewModel = hiltViewModel()) {
     Column(modifier = Modifier.fillMaxSize()) {
         Row (modifier = Modifier.fillMaxWidth()) {
             TextField(
-                value = state.weight, onValueChange = {
+                value = state.bodyWeight, onValueChange = {
                     viewModel.onEvent(WorkoutEvent.ChangeWeight(it))
                 }, keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Decimal,

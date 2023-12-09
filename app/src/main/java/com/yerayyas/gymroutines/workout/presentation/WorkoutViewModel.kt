@@ -7,7 +7,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yerayyas.gymroutines.core.domain.model.WorkoutLog
 import com.yerayyas.gymroutines.workout.domain.useCases.CreateWorkoutUseCase
 import com.yerayyas.gymroutines.workout.domain.useCases.FinishWorkoutUseCase
 import com.yerayyas.gymroutines.workout.domain.useCases.GetNextWorkoutIdUseCase
@@ -42,24 +41,14 @@ class WorkoutViewModel @Inject constructor(
         when (event) {
             is WorkoutEvent.ChangeWeight -> {
                 state = state.copy(
-                    weight = event.weight,
+                    bodyWeight = event.weight,
                 )
             }
 
             WorkoutEvent.FinishWorkout -> {
                 viewModelScope.launch {
-                    val workoutLog = state.workout?.let {
-                        WorkoutLog(
-                            id = null,
-                            bodyWeight = state.weight.toDouble(),
-                            date = state.date,
-                            workout = it
-                        )
+                    state.workout?.let { finishWorkoutUseCase(state.routineId, state.bodyWeight.toDouble(), it) }
 
-                    }
-                    if (workoutLog != null) {
-                        finishWorkoutUseCase(state.routineId, workoutLog)
-                    }
                 }
             }
         }

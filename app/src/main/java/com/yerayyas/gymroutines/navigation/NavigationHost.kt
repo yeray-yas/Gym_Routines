@@ -15,8 +15,8 @@ const val ROUTINE_ID = "routineId"
 fun NavigationHost(
     navHostController: NavHostController
 ) {
-    NavHost(navController = navHostController, startDestination = NavigationRoute.Home.route ){
-        composable(NavigationRoute.Home.route){
+    NavHost(navController = navHostController, startDestination = NavigationRoute.Home.route) {
+        composable(NavigationRoute.Home.route) {
             HomeScreen(
                 {
                     navHostController.navigate(NavigationRoute.Workout.route + "?$ROUTINE_ID=$it")
@@ -28,12 +28,12 @@ fun NavigationHost(
             NavigationRoute.Workout.route + "?$ROUTINE_ID={$ROUTINE_ID}",
             arguments = listOf(
                 navArgument(ROUTINE_ID) {
-                    type = NavType.StringType
-                    nullable = true
-                    defaultValue = null
+                    type = NavType.LongType
+                    nullable = false
+                    defaultValue = -1L
                 }
             )
-        ){
+        ) {
             WorkoutScreen()
         }
     }
