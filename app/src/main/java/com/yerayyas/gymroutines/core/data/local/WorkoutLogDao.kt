@@ -11,6 +11,7 @@ import com.yerayyas.gymroutines.core.data.local.entities.relations.WorkoutLogWit
 
 @Dao
 interface WorkoutLogDao {
+
     @Query("SELECT * FROM WorkoutLogEntity WHERE workoutLogId = :id")
     suspend fun getWorkoutLogById(id: Long): WorkoutLogEntity
 
@@ -29,4 +30,8 @@ interface WorkoutLogDao {
 
     @Query("SELECT COUNT(workoutLogId) FROM WorkoutLogEntity WHERE routineId = :id")
     suspend fun countAllWorkoutLogs(id: Long): Int
+
+    @Query("SELECT * FROM WorkoutLogEntity WHERE date BETWEEN :lastWeek AND :today")
+    suspend fun getLastWeekWorkoutLogs(today: Long, lastWeek: Long): List<WorkoutLogEntity>
+
 }

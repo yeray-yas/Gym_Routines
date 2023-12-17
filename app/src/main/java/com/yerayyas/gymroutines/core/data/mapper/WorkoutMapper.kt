@@ -97,5 +97,6 @@ fun WorkoutWithExercises.toDomain(): Workout {
         name = this.workoutEntity.name,
         exercises = this.exercises.map { it.toDomain() }
     )
+
 }
 

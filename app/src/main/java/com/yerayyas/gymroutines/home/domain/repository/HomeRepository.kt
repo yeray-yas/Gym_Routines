@@ -8,4 +8,6 @@ interface HomeRepository {
     fun getAllRoutines(): Flow<List<Routine>>
 
     suspend fun insertRoutine(routine: Routine)
+
+    suspend fun getAllWeightsInLastWeek() : List<Double>
 }

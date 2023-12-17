@@ -10,7 +10,7 @@ class FinishWorkoutUseCase(private val repository: WorkoutRepository) {
         val workoutLog = WorkoutLog(
             id = null,
             bodyWeight = bodyWeight,
-            date = LocalDate.now(),
+            date = LocalDate.now().minusDays(6),
             workout = workout
         )
         repository.saveWorkout(routineId, workoutLog)

@@ -47,8 +47,12 @@ class WorkoutViewModel @Inject constructor(
 
             WorkoutEvent.FinishWorkout -> {
                 viewModelScope.launch {
-                    state.workout?.let { finishWorkoutUseCase(state.routineId, state.bodyWeight.toDouble(), it) }
+                    state.workout?.let { finishWorkoutUseCase(
+                        state.routineId,
+                        state.bodyWeight.toDouble(),
+                        it,
 
+                    ) }
                 }
             }
         }

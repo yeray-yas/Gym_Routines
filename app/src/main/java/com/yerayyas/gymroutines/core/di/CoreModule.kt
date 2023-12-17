@@ -60,4 +60,5 @@ object CoreModule {
     fun provideExerciseDao(db:WorkoutDatabase):ExerciseDao{
         return db.exerciseDao
     }
+
 }

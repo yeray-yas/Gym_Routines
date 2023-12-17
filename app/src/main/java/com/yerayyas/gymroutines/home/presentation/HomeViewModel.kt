@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yerayyas.gymroutines.home.domain.useCases.CalculateMedianBodyWeightUseCase
 import com.yerayyas.gymroutines.home.domain.useCases.GetRoutinesUseCase
 import com.yerayyas.gymroutines.home.domain.useCases.InsertRoutineUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getRoutinesUseCase: GetRoutinesUseCase,
-    private val insertRoutineUseCase: InsertRoutineUseCase
+    private val insertRoutineUseCase: InsertRoutineUseCase,
+    private val getMedianBodyWeightUseCase: CalculateMedianBodyWeightUseCase
 ) : ViewModel() {
     var state by mutableStateOf(HomeState())
 
@@ -30,6 +32,12 @@ class HomeViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
+            val weight = getMedianBodyWeightUseCase()
+            println(weight)
+            println()
+        }
+
+        /*viewModelScope.launch {
             try {
                 insertRoutineUseCase(FakeDataGenerator.createRoutine())
             } catch (e: Exception) {
@@ -37,6 +45,6 @@ class HomeViewModel @Inject constructor(
                 println()
             }
             println()
-        }
+        }*/
     }
 }
